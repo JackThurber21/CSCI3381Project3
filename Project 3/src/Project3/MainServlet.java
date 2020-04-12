@@ -1,3 +1,5 @@
+// Jack Thurber
+// CSCI 3381 Project 3
 package Project3;
 
 import java.io.IOException;
@@ -29,6 +31,7 @@ public class MainServlet extends HttpServlet {
 	 */
 	public MainServlet() {
 		super();
+		// constructor for the patient collection from project 1
 		myPats = new PatientCollection();
 		id ="";
 		// TODO Auto-generated constructor stub
@@ -61,16 +64,17 @@ public class MainServlet extends HttpServlet {
 						+ "<p style='color:red;'>Username or password is incorrect, try again</p>");
 			}
 		}
-
+		// Goes back to the log in page
 		if (request.getParameter("doLogout") != null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/ProjectIndex.html");   
 			rd.forward(request, response);
 		}
-
+		// Moves to the modify patient jsp file
 		if (request.getParameter("Modpat") != null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/Modifypat.jsp");
 			rd.forward(request, response);
 		}
+		// pushes the modifications through to the patient and returns to using.jsp
 		if(request.getParameter("modButton") != null) {
 			String label1Value = "<select name=\"ids\">"; 
 			String[] tokens = myPats.toString().split("\n");
@@ -82,6 +86,7 @@ public class MainServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/Using.jsp");
 			rd.forward(request, response);
 		}
+		// moves to the deletion jsp file
 		if(request.getParameter("DelPat") != null) {
 			String label1Value = "<select name=\"ids\">"; 
 			String[] tokens = myPats.toString().split("\n");
@@ -93,6 +98,7 @@ public class MainServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/DelPat.jsp");
 			rd.forward(request, response);
 		}
+		// deletes the patient and sends the user back to using.jsp
 		if(request.getParameter("delButton") != null) {
 			
 			String label1Value = "<select name=\"ids\">"; 
@@ -106,6 +112,7 @@ public class MainServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/Using.jsp");
 			rd.forward(request, response);
 		}
+		// takes the user back to using.jsp without making changes
 		if(request.getParameter("backButton") != null) {
 			String label1Value = "<select name=\"ids\">"; 
 			String[] tokens = myPats.toString().split("\n");
